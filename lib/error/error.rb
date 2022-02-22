@@ -9,7 +9,7 @@ module Credit
     class Main
         def Main.run
             ver = Credit::CardVerificator.new
-            ver.verify(Credit::Card.new(1, "4003600000000014", "Jakub Nowak"))
+            puts ver.verify(Credit::Card.new(1, "1234567890", "Jakub Nowak"))
         end
     end
 end

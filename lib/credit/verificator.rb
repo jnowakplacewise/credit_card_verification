@@ -39,15 +39,18 @@ module Credit
             }
 
             provider = get_provider(code)
-            providers_lengths[provider[0]].include? code.length
-
+            begin
+                providers_lengths[provider[0]].include? code.length 
+            rescue NoMethodError
+                false
+            end
         end
 
-        def validate(code)
+        def check_code_with_luhn(code)
             last, code = code[-1], code[0...-1]
             even_sum = 0
             odd_sum = 0
-            
+
             code.split("").map{|e| e.to_i}.reverse.each_with_index do |val, i| 
                 val *= 2 if i.even?
                 even_sum += val > 10 ? 1 + (val % 10) : val if i.even?
@@ -60,17 +63,12 @@ module Credit
         def verify(card)
             code = clean_code(card.code).to_s
             puts "CODE: #{code}"
-            if check_alpha(code) && check_prefix(code) && check_length(code)
-                 puts "ALL INITIAL CHECKING ARE OK"
-                 puts "PROVIDED CODE IS: " + validate(code).to_s
-                 
+            if check_alpha(code) && check_prefix(code) && check_length(code) && check_code_with_luhn(code).to_s
+                 puts "ALL INITIAL CHECKS ARE OK" 
+                 get_provider(code)
             else
-                puts "INVALID"
+                "INVALID"
             end
-            #puts "alpha #{check_alpha(code)}"
-            #puts "prefix #{check_prefix(code)}"
-            #puts "length #{check_length(code)}"
-
         end
 
 
