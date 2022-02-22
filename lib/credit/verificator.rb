@@ -15,7 +15,7 @@ module Credit
         'VISA' => [4]
       }
       code_prefix = code[0].to_i == 4 ? code[0] : code[0..1]
-      providers.select { |_k, v| v.include? code_prefix.to_i }.keys
+      providers.select { |_k, v| v.include? code_prefix.to_i }.keys[0]
     end
 
     def clean_code(code)
@@ -38,9 +38,9 @@ module Credit
         'VISA' => [13, 16]
       }
       provider = get_provider(code)
-      
+
       begin
-        providers_lengths[provider[0]].include? code.length
+        providers_lengths[provider].include? code.length
       rescue NoMethodError
         false
       end
@@ -64,7 +64,7 @@ module Credit
       code = clean_code(card.code).to_s
       puts "CODE: #{code}"
       if check_alpha(code) && check_prefix(code) && check_length(code) && check_code_with_luhn(code).to_s
-        puts 'ALL INITIAL CHECKS ARE OK'
+        # puts 'ALL INITIAL CHECKS ARE OK'
         get_provider(code)
       else
         'INVALID'
