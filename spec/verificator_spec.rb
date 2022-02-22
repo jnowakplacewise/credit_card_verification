@@ -12,11 +12,11 @@ describe Credit::CardVerificator do
         expect(ver.clean_code('11-22-33')).to eq('112233')
       end
     end
-    context 'given 11-22-33' do
-      it 'returns 112233' do
+    context 'given 11-22-3-' do
+      it 'not returns 112233-' do
         ver = Credit::CardVerificator.new
 
-        expect(ver.clean_code('11-22-33')).not_to eq('112233-')
+        expect(ver.clean_code('11-22-33-')).not_to eq('112233-')
       end
     end
   end
@@ -67,10 +67,11 @@ describe Credit::CardVerificator do
         expect(ver.check_length('5105105105105100')).to be(true)
         expect(ver.check_length('4111111111111111')).to be(true)
         expect(ver.check_length('4012888888881881')).to be(true)
+        expect(ver.check_length('4012312313213121')).to be(true)
       end
     end
     context 'given 37828220005' do
-      it 'is valid (true)' do
+      it 'is valid (false)' do
         ver = Credit::CardVerificator.new
         expect(ver.check_length('37828220005')).to be(false)
       end

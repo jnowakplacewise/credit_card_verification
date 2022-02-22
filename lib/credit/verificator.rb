@@ -4,7 +4,7 @@ require_relative './card'
 
 module Credit
   class Verificator
-    def verify(card); end
+    def verify(); end
   end
 
   class CardVerificator < Verificator
@@ -62,7 +62,7 @@ module Credit
 
     def verify(card)
       code = clean_code(card.code).to_s
-      puts "CODE: #{code}"
+      # puts "CODE: #{code}"
       if check_alpha(code) && check_prefix(code) && check_length(code) && check_code_with_luhn(code).to_s
         # puts 'ALL INITIAL CHECKS ARE OK'
         get_provider(code)

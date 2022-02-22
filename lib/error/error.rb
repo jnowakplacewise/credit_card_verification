@@ -7,6 +7,12 @@ require_relative '../credit/verificator'
 module Credit
   class Error < StandardError; end
 
+  class CodeSyntaxError < StandardError
+    def message
+      'Code should not cointain any alphabets chars'
+    end
+  end
+
   class Main
     def self.run
       ver = Credit::CardVerificator.new
