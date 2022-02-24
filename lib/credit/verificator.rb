@@ -4,7 +4,7 @@ require_relative './card'
 
 module Credit
   class Verificator
-    def verify(); end
+    def verify; end
   end
 
   class CardVerificator < Verificator
@@ -23,12 +23,12 @@ module Credit
     end
 
     def check_alpha(code)
-      code.match(/\D/) ? false : true
+      !code.match?(/\D/)
     end
 
     def check_prefix(code)
       provider = get_provider(code)
-      provider.nil? ? false : true
+      !provider.nil?
     end
 
     def check_length(code)

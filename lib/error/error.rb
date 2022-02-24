@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-
-require_relative '../credit/version'
-require_relative '../credit/card'
-require_relative '../credit/verificator'
+require 'credit/card'
+require 'credit/verificator'
+require 'credit/version'
 
 module Credit
   class Error < StandardError; end
