@@ -2,7 +2,7 @@
 The library aim is to provide functionality to check whenever
 credit card is valid.
 
-###Card
+### Card
 ```code
 class Card
     attr_accessor :id, :code, :owner
@@ -18,7 +18,7 @@ Card is a class which take 3 parameters, id, code and owner.
 Now the most important is code field, becouse it is exactly on what
 the Validator class will be operating.
 
-###Verificator
+### Verificator
 ```code
 class Verificator
   ...
@@ -32,7 +32,7 @@ class Verificator
   end
 ```
 
-###Manual
+### Manual
 1. Create Verificator Object
 2. Call verify method with Card Object 
 3. Card object should take id - int, code - string and owner - string
@@ -41,7 +41,7 @@ ver = Credit::CardVerificator.new
 ver.verify(Credit::Card.new(1, '1234567890', 'Jakub Nowak'))
 ```
 
-###Installation
+### Installation
 1. Download file credit_card_verification-0.0.0.gem
 2. Run ```gem install ./credit_card_verification-0.0.0.gem```
 3. ```require 'credit/card'```
